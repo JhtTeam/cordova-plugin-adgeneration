@@ -1,0 +1,30 @@
+{
+    "name": "cordova-plugin-adgeneration",
+    "version": "0.1.0",
+    "description": "cordova-plugin-adgeneration",
+    "cordova": {
+      "id": "cordova-plugin-adgeneration",
+      "platforms": [
+        "android",
+        "ios",
+        "wp8",
+        "windows"
+      ]
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/JhtTeam/cordoba-plugin-adgeneration"
+    },
+    "bugs": {
+      "url": "https://github.com/JhtTeam/cordoba-plugin-adgeneration/issues"
+    },
+    "keywords": [
+      "cordova",
+      "adgeneration",
+      "plugin"
+    ],
+    "author": {
+      "name": "The Anh"
+    },
+    "license": "MIT"
+  }
