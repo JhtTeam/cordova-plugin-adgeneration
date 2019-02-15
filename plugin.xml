@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="cordoba-plugin-adgeneration" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>adgeneration</name>
-    <repo>https://github.com/JhtTeam/cordoba-plugin-adgeneration.git</repo>
-    <issue>https://github.com/JhtTeam/cordoba-plugin-adgeneration/issues</issue>
+    <repo>https://github.com/JhtTeam/cordova-plugin-adgeneration.git</repo>
+    <issue>https://github.com/JhtTeam/cordova-plugin-adgeneration/issues</issue>
     <js-module name="adgeneration" src="www/adgeneration.js">
         <clobbers target="cordova.plugins.adgeneration" />
     </js-module>

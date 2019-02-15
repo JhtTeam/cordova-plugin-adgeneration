@@ -13,10 +13,10 @@
     },
     "repository": {
       "type": "git",
-      "url": "https://github.com/JhtTeam/cordoba-plugin-adgeneration.git"
+      "url": "https://github.com/JhtTeam/cordova-plugin-adgeneration.git"
     },
     "bugs": {
-      "url": "https://github.com/JhtTeam/cordoba-plugin-adgeneration/issues"
+      "url": "https://github.com/JhtTeam/cordova-plugin-adgeneration/issues"
     },
     "keywords": [
       "cordova",
