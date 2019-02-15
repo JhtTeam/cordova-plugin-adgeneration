@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordoba-plugin-adgeneration" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>adgeneration</name>
+    <js-module name="adgeneration" src="www/adgeneration.js">
+        <clobbers target="cordova.plugins.adgeneration" />
+    </js-module>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="adgeneration">
+                <param name="ios-package" value="CDVAdgeneration"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVAdgeneration.h" />
+        <source-file src="src/ios/CDVAdgeneration.m" />
+
+        <source-file src="src/ios/Adgeneration/ADG.framework" custom="true" framework="true" />
+
+        <framework src="CoreGraphics.framework"/>
+        <framework src="AdSupport.framework"/>
+        <framework src="QuartzCore.framework"/>
+        <framework src="Security.framework"/>
+        <framework src="MediaPlayer.framework"/>
+        <framework src="CoreTelephony.framework"/>
+        <framework src="SystemConfiguration.framework"/>
+    </platform>
+</plugin>
