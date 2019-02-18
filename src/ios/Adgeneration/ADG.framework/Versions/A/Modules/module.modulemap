@@ -1,6 +1,0 @@
-framework module ADG {
-    umbrella header "ADG.h"
-    
-    export *
-    module * { export * }
-}

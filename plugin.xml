@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="cordoba-plugin-adgeneration" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>adgeneration</name>
-    <repo>https://github.com/JhtTeam/cordova-plugin-adgeneration.git</repo>
-    <issue>https://github.com/JhtTeam/cordova-plugin-adgeneration/issues</issue>
+    <repo>https://github.com/JhtTeam/cordova-plugin-adgeneration-vamp.git</repo>
+    <issue>https://github.com/JhtTeam/cordova-plugin-adgeneration-vamp/issues</issue>
     <js-module name="adgeneration" src="www/adgeneration.js">
         <clobbers target="cordova.plugins.adgeneration" />
     </js-module>
@@ -16,7 +16,18 @@
         <header-file src="src/ios/CDVAdgeneration.h" />
         <source-file src="src/ios/CDVAdgeneration.m" />
 
-        <source-file src="src/ios/Adgeneration/ADG.framework" custom="true" framework="true" />
+        <!-- <source-file src="src/ios/Adgeneration/AppLovinSDK.framework" custom="true" framework="true" />
+        <source-file src="src/ios/Adgeneration/FBAudienceNetwork.framework" custom="true" framework="true" />
+        <source-file src="src/ios/Adgeneration/GoogleMobileAds.framework" custom="true" framework="true" />
+        <source-file src="src/ios/Adgeneration/MTGSDK.framework" custom="true" framework="true" />
+        <source-file src="src/ios/Adgeneration/MTGSDKReward.framework" custom="true" framework="true" />
+        <source-file src="src/ios/Adgeneration/Maio.framework" custom="true" framework="true" />
+        <source-file src="src/ios/Adgeneration/MoPubSDKFramework.framework" custom="true" framework="true" />
+        <source-file src="src/ios/Adgeneration/NendAd.embeddedframework" custom="true" framework="true" />
+        <source-file src="src/ios/Adgeneration/Tapjoy.embeddedframework" custom="true" framework="true" />
+        <source-file src="src/ios/Adgeneration/UnityAds.framework" custom="true" framework="true" />
+        <source-file src="src/ios/Adgeneration/VAMP.embeddedframework" custom="true" framework="true" />
+        <source-file src="src/ios/Adgeneration/VungleSDK.framework" custom="true" framework="true" /> -->
 
         <framework src="CoreGraphics.framework"/>
         <framework src="AdSupport.framework"/>
@@ -26,4 +37,44 @@
         <framework src="CoreTelephony.framework"/>
         <framework src="SystemConfiguration.framework"/>
     </platform>
+
+    <platform name="android">
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <!--applovin-->
+            <activity
+                android:name="com.applovin.adview.AppLovinInterstitialActivity"
+                android:configChanges="orientation|screenSize" />
+            <activity
+                android:name="com.applovin.adview.AppLovinConfirmationActivity"
+                android:configChanges="orientation|screenSize" />
+            <!--MoPub-->
+            <activity
+                android:name="com.mopub.common.MoPubBrowser"
+                android:configChanges="keyboardHidden|orientation|screenSize"/>
+            <activity
+                android:name="com.mopub.mobileads.RewardedMraidActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"/>
+            <activity
+                android:name="com.mopub.mobileads.MraidVideoPlayerActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"/>
+          </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+          </config-file>
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="adgeneration">
+                <param name="android-package" value="com.smartidea.plugin.AdGeneration"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <source-file src="src/android/AdGeneration.java" target-dir="src/com/smartidea/plugin" />
+
+        <!-- cordova CLI using gradle and it's working well
+        <framework src="com.google.android.gms:play-services-ads:+" /> -->
+        <!-- but unfortunately, build.phonegap.com, Intel XDK, and some other tools still use ant -->
+        <!-- dependency id="cordova-plugin-googleplayservices"/ -->
+     </platform>
 </plugin>
