@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="cordoba-plugin-adgeneration" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>adgeneration</name>
-    <repo>https://github.com/JhtTeam/cordova-plugin-adgeneration-vamp.git</repo>
-    <issue>https://github.com/JhtTeam/cordova-plugin-adgeneration-vamp/issues</issue>
+    <repo>https://github.com/JhtTeam/cordova-plugin-adgeneration.git</repo>
+    <issue>https://github.com/JhtTeam/cordova-plugin-adgeneration/issues</issue>
     <js-module name="adgeneration" src="www/adgeneration.js">
         <clobbers target="cordova.plugins.adgeneration" />
     </js-module>
@@ -16,7 +16,7 @@
         <header-file src="src/ios/CDVAdgeneration.h" />
         <source-file src="src/ios/CDVAdgeneration.m" />
 
-        <!-- <source-file src="src/ios/Adgeneration/AppLovinSDK.framework" custom="true" framework="true" />
+        <source-file src="src/ios/Adgeneration/AppLovinSDK.framework" custom="true" framework="true" />
         <source-file src="src/ios/Adgeneration/FBAudienceNetwork.framework" custom="true" framework="true" />
         <source-file src="src/ios/Adgeneration/GoogleMobileAds.framework" custom="true" framework="true" />
         <source-file src="src/ios/Adgeneration/MTGSDK.framework" custom="true" framework="true" />
@@ -27,7 +27,7 @@
         <source-file src="src/ios/Adgeneration/Tapjoy.embeddedframework" custom="true" framework="true" />
         <source-file src="src/ios/Adgeneration/UnityAds.framework" custom="true" framework="true" />
         <source-file src="src/ios/Adgeneration/VAMP.embeddedframework" custom="true" framework="true" />
-        <source-file src="src/ios/Adgeneration/VungleSDK.framework" custom="true" framework="true" /> -->
+        <source-file src="src/ios/Adgeneration/VungleSDK.framework" custom="true" framework="true" />
 
         <framework src="CoreGraphics.framework"/>
         <framework src="AdSupport.framework"/>
@@ -39,7 +39,11 @@
     </platform>
 
     <platform name="android">
+        <preference name="ADMOB_APP_ID" default=""/>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <meta-data
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value="$ADMOB_APP_ID"/>
             <!--applovin-->
             <activity
                 android:name="com.applovin.adview.AppLovinInterstitialActivity"

@@ -3,9 +3,13 @@
 
 #define OPT_PLACEMENT_ID    @"placementId"
 #define OPT_AUTO_SHOW       @"autoShow"
+#define OPT_TEST_MODE       @"testMode"
+#define OPT_DEBUG_MODE      @"debugMode"
 
 @interface CDVAdgeneration () <VAMPDelegate>
 @property (assign) BOOL autoShow;
+@property (assign) BOOL testMode;
+@property (assign) BOOL debugMode;
 @property (assign) BOOL isComplete;
 @property (nonatomic, assign) NSString *placementId;
 @property (nonatomic) VAMP *vamp;
@@ -98,9 +102,17 @@
     
     str = [options objectForKey:OPT_AUTO_SHOW];
     if(str) self.autoShow = [str boolValue];
+    
+    str = [options objectForKey:OPT_TEST_MODE];
+    if(str) self.testMode = [str boolValue];
+    
+    str = [options objectForKey:OPT_AUTO_SHOW];
+    if(str) self.debugMode = [str boolValue];
 }
 
 - (void) __createVamp {
+    [VAMP setTestMode:self.testMode];
+    [VAMP setDebugMode:self.debugMode];
     self.vamp = [VAMP new];
     self.vamp.delegate = self;
     [self.vamp setPlacementId:self.placementId];
@@ -236,7 +248,7 @@
         [self addLogText:[NSString stringWithFormat:@"vampLoadResult(%@, %@, success:NG, %@)", adnwName, placementId, message]];
     }
     NSString* jsonData = [NSString stringWithFormat:@"{ 'adnwName': '%@', 'success': %d }", adnwName, success];
-    [self fireEvent:@"" event:@"vampLoadStart" withData:jsonData];
+    [self fireEvent:@"" event:@"vampLoadResult" withData:jsonData];
 }
 
 // VAMPの状態が変化したときの通知されます
