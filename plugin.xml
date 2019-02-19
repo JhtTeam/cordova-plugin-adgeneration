@@ -16,7 +16,7 @@
         <header-file src="src/ios/CDVAdgeneration.h" />
         <source-file src="src/ios/CDVAdgeneration.m" />
 
-        <source-file src="src/ios/Adgeneration/AppLovinSDK.framework" custom="true" framework="true" />
+        <!-- <source-file src="src/ios/Adgeneration/AppLovinSDK.framework" custom="true" framework="true" />
         <source-file src="src/ios/Adgeneration/FBAudienceNetwork.framework" custom="true" framework="true" />
         <source-file src="src/ios/Adgeneration/GoogleMobileAds.framework" custom="true" framework="true" />
         <source-file src="src/ios/Adgeneration/MTGSDK.framework" custom="true" framework="true" />
@@ -27,7 +27,7 @@
         <source-file src="src/ios/Adgeneration/Tapjoy.embeddedframework" custom="true" framework="true" />
         <source-file src="src/ios/Adgeneration/UnityAds.framework" custom="true" framework="true" />
         <source-file src="src/ios/Adgeneration/VAMP.embeddedframework" custom="true" framework="true" />
-        <source-file src="src/ios/Adgeneration/VungleSDK.framework" custom="true" framework="true" />
+        <source-file src="src/ios/Adgeneration/VungleSDK.framework" custom="true" framework="true" /> -->
 
         <framework src="CoreGraphics.framework"/>
         <framework src="AdSupport.framework"/>
