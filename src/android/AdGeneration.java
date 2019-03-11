@@ -95,6 +95,7 @@ public class AdGeneration extends CordovaPlugin {
     }
 
     private void createVamp() {
+        if (isDebugMode) Log.w(LOGTAG, "createVamp");
         vamp = VAMP.getVampInstance(cordova.getActivity(), placementId);
         vamp.setVAMPListener(new AdListener(vamp));      // VAMPListenerをセット
         vamp.setAdvancedListener(new AdvListener()); // AdvancedListenerをセット
@@ -136,6 +137,7 @@ public class AdGeneration extends CordovaPlugin {
      * successfully.
      */
     private PluginResult executeCreateVampView(JSONObject options, CallbackContext callbackContext) {
+        if (isDebugMode) Log.w(LOGTAG, "executeCreateVampView");
         final CallbackContext delayCallback = callbackContext;
         this.setOptions(options);
 
@@ -168,7 +170,7 @@ public class AdGeneration extends CordovaPlugin {
             public void run() {
                 if (vamp == null) {
                     createVamp();
-                } else {
+                } {
                     vamp.load();
                 }
                 if (delayCallback != null)
@@ -192,6 +194,7 @@ public class AdGeneration extends CordovaPlugin {
      * successfully.
      */
     private PluginResult executeDestroyVamp(JSONObject options, CallbackContext callbackContext) {
+        if (isDebugMode) Log.w(LOGTAG, "executeDestroyVamp");
         final CallbackContext delayCallback = callbackContext;
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -211,12 +214,13 @@ public class AdGeneration extends CordovaPlugin {
     }
 
     private PluginResult executeShowVampAd(JSONObject options, CallbackContext callbackContext) {
+        if (isDebugMode) Log.w(LOGTAG, "executeShowVampAd");
         this.setOptions(options);
 
         if (vamp == null) {
             this.createVamp();
-//            callbackContext.error("vamp ad is null, call createVampView first");
-//            return null;
+        } else {
+            vamp.load();
         }
 
         final CallbackContext delayCallback = callbackContext;
@@ -224,7 +228,8 @@ public class AdGeneration extends CordovaPlugin {
             @Override
             public void run() {
                 if (vamp != null && vamp.isReady()) {
-                    vamp.show();
+                    boolean show = vamp.show();
+                    if (isDebugMode) Log.w(LOGTAG, "executeShowVampAd ... show: " + show);
                 }
                 delayCallback.success();
             }
@@ -311,9 +316,9 @@ public class AdGeneration extends CordovaPlugin {
 
         @Override
         public void onClose(String placementId, String adnwName) {
+            if (isDebugMode) Log.d(LOGTAG, "onClose(" + adnwName + ")");
             // 動画プレーヤーやエンドカードが表示終了
             // ＜注意：ユーザキャンセルなども含むので、インセンティブ付与はonCompleteで判定すること＞
-            if (isDebugMode) Log.d(LOGTAG, "onClose(" + adnwName + ")");
             String jsonStr = String.format("{ 'adnwName': '%s', 'complete': %b }", adnwName, isComplete);
             fireEvent("vampDidClose", jsonStr);
         }
